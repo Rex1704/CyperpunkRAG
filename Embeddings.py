@@ -12,6 +12,8 @@ TIMELINE_OUTPUT_FILE = "data/embeddings_ready/cyberpunk_timeline_embedding_docum
 
 KEYS_TO_SKIP = ['template_type']
 
+SLANG_RAW_FILE = "data/raw_slang.txt"
+SLANG_OUTPUT_FILE = "data/embeddings_ready/cyberpunk_slang_embedding_documents.json"
 
 MAPPING_OUTPUT_FILE = "data/indexes/document_type_mapping.json"
 
@@ -291,6 +293,40 @@ def clean_timeline_text(text):
 # print("\n--- Sample of Document Text Ready for Embedding (First 2 Articles) ---")
 # print(json.dumps(sample_output, indent=4, ensure_ascii=False))
 #
+# # --- Execution (Slang) ---
+# try:
+#     with open(SLANG_RAW_FILE, 'r', encoding='utf-8') as f:
+#         SLANG_TEXT = f.read()
+# except FileNotFoundError:
+#     raise FileNotFoundError(f"Error: Could not find the required file: {SLANG_RAW_FILE}")
+#
+# # --- 1. Parse and Clean the Slang Data ---
+# slang_data = parse_slang(SLANG_TEXT)
+#
+# # --- 2. Concatenate for Embedding ---
+# slang_embedding_documents = {}
+# for term, definition in slang_data.items():
+#     # Create the merged text for the summary field
+#     merged_summary = f"slang term: {term}. definition: {definition}."
+#
+#     # New structure: dictionary with title and summary
+#     slang_embedding_documents[term] = {
+#         'title': term.title(),
+#         'summary': merged_summary
+#     }
+#
+# # --- 3. Save Output and Provide Sample ---
+# with open(SLANG_OUTPUT_FILE, 'w', encoding='utf-8') as f:
+#     json.dump(slang_embedding_documents, f, ensure_ascii=False, indent=4)
+#
+# # Print a sample
+# sample_keys = list(slang_embedding_documents.keys())[:3]
+# sample_output = {key: slang_embedding_documents[key] for key in sample_keys}
+#
+# print(f"Total slang terms prepared for embedding: {len(slang_embedding_documents)}")
+# print(f"Slang embedding documents saved to: {SLANG_OUTPUT_FILE}")
+# print("\n--- Sample of Slang Documents Ready for Embedding (First 3 Entries) ---")
+# print(json.dumps(sample_output, indent=4, ensure_ascii=False))
 
 # NER
 # --- Main Execution ---
