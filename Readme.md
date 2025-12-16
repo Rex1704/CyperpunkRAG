@@ -10,6 +10,10 @@ The **Cyberpunk Oracle** is a Retrieval-Augmented Generation (RAG) system built 
 * **Vector Search:** Implements **FAISS** for high-performance similarity search against a pre-computed index using `all-mpnet-base-v2` embeddings.
 * **Conversational UI:** Provides a Streamlit-based interface with token-by-token streaming for real-time interaction and better perceived speed.
 
+## Interface
+![RAG chat bot interface](readmeData/chat.png)
+*Figure: Basic chatbot interface using streamlit.*
+
 ## Technology Stack
 
 | Category | Component | Description |
